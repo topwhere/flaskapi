@@ -90,8 +90,8 @@ MYSQL_HOST = rm-2zenjcndt98hc2cz17o.mysql.rds.aliyuncs.com
 # MYSQL_HOST = dbserver
 MYSQL_PORT = 3306
 MYSQL_DATABASE = uwork
-MYSQL_USERNAME = root
-MYSQL_PASSWORD = wang!ZHE!61592
+MYSQL_USERNAME = uwork
+MYSQL_PASSWORD = sIhXv5DltiofjQYc
 #MYSQL_USERNAME = rbook
 #MYSQL_PASSWORD = Rbook20221104Rbook
 
