@@ -1,0 +1,30 @@
+# flask配置
+FLASK_APP = app.py
+FLASK_DEBUG = development
+FLASK_DEBUG = 1
+FLASK_RUN_HOST = 127.0.0.1
+FLASK_RUN_PORT = 5000
+
+# pear admin flask配置
+SYSTEM_NAME = UWork
+
+# MySql配置信息
+MYSQL_HOST = rm-2zenjcndt98hc2cz17o.mysql.rds.aliyuncs.com
+# MYSQL_HOST = dbserver
+MYSQL_PORT = 3306
+MYSQL_DATABASE = uwork
+MYSQL_USERNAME = root
+MYSQL_PASSWORD = wang!ZHE!61592
+#MYSQL_USERNAME = rbook
+#MYSQL_PASSWORD = Rbook20221104Rbook
+
+# 密钥配置(记得改)
+SECRET_KEY = 'uwork'
+
+# 邮箱配置
+MAIL_SERVER = 'smtp.qq.com'
+MAIL_USERNAME = '123@qq.com'
+MAIL_PASSWORD = 'XXXXX' # 生成的授权码
+
+# 插件配置
+PLUGIN_ENABLE_FOLDERS = ["helloworld"]
