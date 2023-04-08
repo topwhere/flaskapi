@@ -130,9 +130,9 @@ flask run
 ```bash
 # 示例
 
-flask new --type view --name api/ceshi
+flask new --type view --name api/demo
 
 
-# 访问http://127.0.0.1:5000/api/ceshi
+# 访问http://127.0.0.1:5000/api/demo
 ```
 

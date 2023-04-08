@@ -2,7 +2,7 @@ from flask_login import current_user
 
 from applications.common.utils.validate import str_escape
 from applications.extensions import db
-from applications.models import AdminLog
+from applications.models import log
 
 
 def login_log(request, uid, is_access):
@@ -16,7 +16,7 @@ def login_log(request, uid, is_access):
         'success': int(is_access)
 
     }
-    log = AdminLog(
+    log = log(
         url=info.get('url'),
         ip=info.get('ip'),
         user_agent=info.get('user_agent'),
@@ -42,7 +42,7 @@ def admin_log(request, is_access):
         'success': int(is_access)
 
     }
-    log = AdminLog(
+    log = log(
         url=info.get('url'),
         ip=info.get('ip'),
         user_agent=info.get('user_agent'),
