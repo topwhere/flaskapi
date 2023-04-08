@@ -1,7 +1,7 @@
 from functools import wraps
 from flask import abort, request, jsonify, session
 from flask_login import login_required
-from applications.common.log import admin_log
+from applications.common.log import log
 
 
 def authorize(power: str, log: bool = False):
@@ -21,13 +21,13 @@ def authorize(power: str, log: bool = False):
                 return func(*args, **kwargs)
             if not power in session.get('permissions'):
                 if log:
-                    admin_log(request=request, is_access=False)
+                    log(request=request, is_access=False)
                 if request.method == 'GET':
                     abort(403)
                 else:
                     return jsonify(success=False, msg="权限不足!")
             if log:
-                admin_log(request=request, is_access=True)
+                log(request=request, is_access=True)
             return func(*args, **kwargs)
 
         return wrapper

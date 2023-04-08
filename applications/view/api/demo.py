@@ -18,7 +18,6 @@ def index():
     return "这是api/demo路由"
 
 @api_demo.get('/addDemo')
-@authorize("admin:power:edit", log=True)
 def addDemo():
     # req_json = request.json
     title = "123"
