@@ -4,20 +4,18 @@ from applications.common import curd
 from applications.common.utils.http import fail_api, success_api,data_api
 from applications.extensions import db
 from applications.models import Users, Role
-from applications.common.curd import model_to_dicts
 from applications.schemas import UsersOutSchema
 
+api_users = Blueprint('api_users', __name__, url_prefix='/api/users')
 
-index_users = Blueprint('index_users', __name__, url_prefix='/index/users')
 
-
-@index_users.route('/')
+@api_users.route('/')
 def index():
-    return "这是index/users路由"
+    return "这是api/users路由"
 
 
 
-@index_users.get('/getusers/<int:userid>')
+@api_users.get('/getusers/<int:userid>')
 # @authorize("admin:user:delete", log=True)
 def getusers(userid):
     user = curd.get_one_by_id(Users, userid)
@@ -32,7 +30,7 @@ def getusers(userid):
     return data_api(200,curd.model_to_dicts(schema=UsersOutSchema, data=user))
 
 
-@index_users.post('/addUser')
+@api_users.post('/addUser')
 # @authorize("admin:user:add", log=True)
 def addUser():
     req_json = request.json
@@ -64,7 +62,7 @@ def addUser():
 
 
 # 删除用户
-@index_users.delete('/delete/<int:id>')
+@api_users.delete('/delete/<int:id>')
 # @authorize("admin:user:delete", log=True)
 def delete(id):
     user = Users.query.filter_by(id=id).first()
