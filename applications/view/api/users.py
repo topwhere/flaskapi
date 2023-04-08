@@ -18,16 +18,26 @@ def index():
 @api_users.get('/getusers/<int:userid>')
 # @authorize("admin:user:delete", log=True)
 def getusers(userid):
-    user = curd.get_one_by_id(Users, userid)
+    users = curd.get_one_by_id(Users, userid)
     print(1)
-    print(user.realname)
-    print(type(user))
-    type(user)
+    print(users.realname)
+    print(type(users))
+    type(users)
     print(2)
-    data = curd.model_to_dicts(schema=UsersOutSchema, data=user)
-    print(data)
+    # data = curd.model_to_dicts(schema=UsersOutSchema, data=users)
+
+    users_schema = UsersOutSchema(many=True)  # 用已继承ma.ModelSchema类的自定制类生成序列化类
     print(3)
-    return data_api(200,curd.model_to_dicts(schema=UsersOutSchema, data=user))
+
+    output = users_schema.dump(users)  # 生成可序列化对象
+    print(4)
+    for i in output:
+       print(i)
+       print(5)
+
+    print(output)
+    print(6)
+    return data_api(200,curd.model_to_dicts(schema=UsersOutSchema, data=users))
 
 
 @api_users.post('/addUser')

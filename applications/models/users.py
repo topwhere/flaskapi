@@ -4,8 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from applications.extensions import db
 
 
-class Users(db.Model, UserMixin):
-    __tablename__ = 'user'
+class Users(db.Model):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='用户ID')
     username = db.Column(db.String(20), comment='用户名')
     realname = db.Column(db.String(20), comment='真实名字')

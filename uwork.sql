@@ -333,6 +333,32 @@ INSERT INTO `admin_user` VALUES (1, 'admin', 'pbkdf2:sha256:150000$raM7mDSr$58fe
 INSERT INTO `admin_user` VALUES (7, 'test', 'pbkdf2:sha256:150000$cRS8bYNh$adb57e64d929863cf159f924f74d0634f1fecc46dba749f1bfaca03da6d2e3ac', '2021-03-22 20:03:42', '2021-06-01 17:29:47', 1, '超级管理', '要是不能把握时机，就要终身蹭蹬，一事无成', '/static/admin/admin/images/avatar.jpg', 1);
 INSERT INTO `admin_user` VALUES (8, 'wind', 'pbkdf2:sha256:150000$skME1obT$6a2c20cd29f89d7d2f21d9e373a7e3445f70ebce3ef1c3a555e42a7d17170b37', '2021-06-01 17:30:39', '2021-06-01 17:30:52', 1, '风', NULL, '/static/admin/admin/images/avatar.jpg', 7);
 
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '用户名',
+  `password_hash` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '哈希密码',
+  `create_at` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_at` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `enable` int(11) NULL DEFAULT NULL COMMENT '启用',
+  `delete` int(11) NULL DEFAULT 1 COMMENT '删除标识 1 有效 2 删除',
+  `realname` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '真实名字',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '备注',
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '头像',
+  `dept_id` int(11) NULL DEFAULT NULL COMMENT '部门id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES (1, 'ceshi', 'pbkdf2:sha256:150000$raM7mDSr$58fe069c3eac01531fc8af85e6fc200655dd2588090530084d182e6ec9d52c85', NULL, '2021-06-01 17:28:55', 1, 1, '超级管理', '要是不能把握时机，就要终身蹭蹬，一事无成！', 'http://127.0.0.1:5000/_uploads/photos/1617291580000.jpg', 1);
+
+
+
 -- ----------------------------
 -- Table structure for admin_user_role
 -- ----------------------------

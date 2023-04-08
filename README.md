@@ -112,12 +112,18 @@ PLUGIN_ENABLE_FOLDERS = ["helloworld"]
 #### 运行项目
 
 ```bash
-# 初 始 化 数 据 库
+# 1 初 始 化 数 据 库
 
 flask init
+
+# 2 执行 flask run 命令启动项目
+
+flask run
+
+
 ```
 
-执行 flask run 命令启动项目
+
 
 #### 命令行创建视图
 
