@@ -19,7 +19,7 @@ COPY . /app
 WORKDIR /app
 
 RUN pip --no-cache-dir install  -i ${PIPURL} --upgrade pip \
-    && pip --no-cache-dir install  -i ${PIPURL} -r init.txt \
+    && pip --no-cache-dir install  -i ${PIPURL} -r requirements.txt \
     && pip --no-cache-dir install  -i ${PIPURL} gunicorn \
     && chmod +x start.sh
 CMD ./start.sh
