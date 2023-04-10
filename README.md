@@ -134,5 +134,3 @@ flask new --type view --name api/demo1
 
 # 访问http://127.0.0.1:5000/api/demo1
 ```
-
-测试变更
