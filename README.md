@@ -62,9 +62,6 @@ uWork
 # 下 载
 git clone xxxx
 
-# 安 装
-pip install -r init.txt
-
 # 配 置
 .flaskenv
 
@@ -112,11 +109,13 @@ PLUGIN_ENABLE_FOLDERS = ["helloworld"]
 #### 运行项目
 
 ```bash
-# 1 初 始 化 数 据 库
+# 1 安 装 依 赖 包
+pip install -r init.txt
+# 2 初 始 化 数 据 库
 
 flask init
 
-# 2 执行 flask run 命令启动项目
+# 3 执行 flask run 命令启动项目
 
 flask run
 
@@ -130,9 +129,9 @@ flask run
 ```bash
 # 示例
 
-flask new --type view --name api/demo
+flask new --type view --name api/demo1
 
 
-# 访问http://127.0.0.1:5000/api/demo
+# 访问http://127.0.0.1:5000/api/demo1
 ```
 
