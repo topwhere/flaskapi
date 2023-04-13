@@ -15,6 +15,6 @@ class AuthorizationTestView(Resource):
     method_decorators = [login_required]
 
     def get(self):
-        return {"message": "µÇÂ½ºó»ñÈ¡Êı¾İ"}, 200
+        return {"message": "ç™»é™†åè·å–æ•°æ®"}, 200
 
 user_api.add_resource(AuthorizationTestView, '/test', endpoint='AuthorizationTest')
