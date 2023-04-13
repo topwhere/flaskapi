@@ -1,8 +1,18 @@
 from flask import Blueprint
+from flask_restful import Api,Resource
+
+from applications.common.utils.output import output_json
 
 {{name.replace('/','_')}} = Blueprint('{{name.replace('/','_')}}', __name__, url_prefix='/{{name}}')
 
 
-@{{name.replace('/','_')}}.route('/')
-def index():
-    return "这是{{name}}路由"
+{{name.split('/')[0]}}_api = Api({{name.replace('/','_')}}, catch_all_404s=True)
+{{name.split('/')[0]}}_api.representation('application/json')(output_json)
+
+
+class IndexView(Resource):
+    def get(self):
+        return {"Wel Come To": "{{name.split('/')[1]}}"}
+
+
+{{name.split('/')[0]}}_api.add_resource(IndexView, '/', endpoint='index')

@@ -1,7 +1,6 @@
 from flask import Blueprint
 from applications.common.utils.http import fail_api, success_api,data_api
 from applications.common.curd import model_to_dicts,get_one_by_id,auto_model_jsonify
-from applications.common.utils.rights import authorize
 from applications.extensions import db
 from applications.models import Demo
 from applications.schemas import DemoOutSchema

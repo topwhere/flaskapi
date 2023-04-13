@@ -23,4 +23,3 @@ def init_script(app):
                 print(f'已经存在视图模块{name}.py')
                 quit()
             NewViewModular(name=name).new_view()
-
