@@ -3,13 +3,13 @@ from flask import Flask
 
 from applications.common.script import init_script
 from applications.extensions import init_plugs
+from applications.extensions.init_logger import init_logger
 from applications.view import init_view
 from applications.configs import config
 
 
 def create_app(config_name=None):
     app = Flask(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 
     if not config_name:
         # 尝试从本地环境中读取

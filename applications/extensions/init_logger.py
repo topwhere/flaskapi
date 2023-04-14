@@ -16,6 +16,7 @@ class RequestFormatter(logging.Formatter):
 
 
 def init_logger(app):
+
     """
     设置日志
     :param app: Flask app对象
@@ -24,6 +25,7 @@ def init_logger(app):
     logging_file_dir = app.config['LOGGING_FILE_DIR']
     logging_file_max_bytes = app.config['LOGGING_FILE_MAX_BYTES']
     logging_file_backup = app.config['LOGGING_FILE_BACKUP']
+
     logging_level = app.config['LOGGING_LEVEL']
 
     flask_console_handler = logging.StreamHandler()
