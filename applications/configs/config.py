@@ -48,6 +48,10 @@ class BaseConfig:
 
     # 默认日志等级
     LOG_LEVEL = logging.WARN
+    LOGGING_LEVEL = os.getenv('LOGGING_LEVEL') or 'DEBUG'
+    LOGGING_FILE_DIR = os.getenv('LOGGING_FILE_DIR') or '/home/python/logs'
+    LOGGING_FILE_MAX_BYTES = os.getenv('LOGGING_FILE_MAX_BYTES') or 300 * 1024 * 1024
+    LOGGING_FILE_BACKUP = os.getenv('LOGGING_FILE_BACKUP') or 10
     #
     MAIL_SERVER = os.getenv('MAIL_SERVER') or 'smtp.qq.com'
     MAIL_USE_TLS = False

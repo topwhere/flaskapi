@@ -26,3 +26,9 @@ MAIL_PASSWORD = 'XXXXX' # 生成的授权码
 
 # 插件配置
 PLUGIN_ENABLE_FOLDERS = ["helloworld"]
+
+# 日志配置
+LOGGING_LEVEL = 'DEBUG'
+LOGGING_FILE_DIR = '/home/python/logs'
+LOGGING_FILE_MAX_BYTES = 300 * 1024 * 1024
+LOGGING_FILE_BACKUP = 10

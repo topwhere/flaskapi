@@ -15,7 +15,7 @@ def init_plugs(app: Flask) -> None:
     init_template_directives(app)
     init_error_views(app)
     init_mail(app)
-    init_logger(app)
+    # init_logger(app)
     init_scheduler(app)
     init_upload(app)
     init_dotenv()
