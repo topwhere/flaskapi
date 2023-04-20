@@ -11,6 +11,7 @@ def init_script(app):
     def init():
         init_db()
 
+
     @app.cli.command()
     @click.option('--type', prompt="请输入类型", help='新增的类型')
     @click.option('--name', prompt="请输入新增的名称", help='新增的名称')
