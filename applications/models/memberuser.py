@@ -1,5 +1,6 @@
 import datetime
 from applications.extensions import db
+from sqlalchemy import desc, asc
 
 
 class MemberUser(db.Model):
@@ -22,3 +23,53 @@ class MemberUser(db.Model):
 
     def __repr__(self):
         return '<MemberUser %r>' % self.id
+
+    """
+            获取一条
+            @param set filters 查询条件
+            @param obj order 排序
+            @param tuple field 字段
+            @return dict
+        """
+
+    def getOne(self, filters, order='id desc', field=()):
+        res = db.query(self).filter(*filters)
+        order = order.split(' ')
+        if order[1] == 'desc':
+            res = res.order_by(desc(order[0])).first()
+        else:
+            res = res.order_by(asc(order[0])).first()
+        if res == None:
+            return None
+        if not field:
+            res = res.to_dict()
+        else:
+            res = res.to_dict(only=field)
+        return res
+        # 设置密码
+
+    # 设置密码
+    @staticmethod
+    def set_password(password):
+        return generate_password_hash(password)
+
+    # 校验密码
+    @staticmethod
+    def check_password(hash_password, password):
+        return check_password_hash(hash_password, password)
+
+    # 获取用户信息
+    @staticmethod
+    def get(id):
+        return dBSession.query(Users).filter_by(id=id).first()
+
+    # 增加用户
+    @classTransaction
+    def add(self, user):
+        dBSession.add(user)
+        return True
+
+    # 根据id删除用户
+    def delete(self, id):
+        self.query.filter_by(id=id).delete()
+        return dBSession.commit()
