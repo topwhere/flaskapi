@@ -1,5 +1,6 @@
 import datetime
 from applications.extensions import db
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import desc, asc
 
 
@@ -61,15 +62,14 @@ class MemberUser(db.Model):
     # 获取用户信息
     @staticmethod
     def get(id):
-        return dBSession.query(Users).filter_by(id=id).first()
+        return db.query(MemberUser).filter_by(id=id).first()
 
     # 增加用户
-    @classTransaction
     def add(self, user):
-        dBSession.add(user)
+        db.add(user)
         return True
 
     # 根据id删除用户
     def delete(self, id):
-        self.query.filter_by(id=id).delete()
-        return dBSession.commit()
+        db.query(MemberUser).filter_by(id=id).update({'deleted': 2})
+        return db.commit()
