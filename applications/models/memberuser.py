@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import datetime
 from applications.extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -6,30 +7,30 @@ from sqlalchemy import desc, asc
 
 class MemberUser(db.Model):
     __tablename__ = 'member_user'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='×ÔÔöid')
-    username = db.Column(db.String(64, collation='utf8mb4_general_ci'), default='', comment='ÓÃ»§ĞÕÃû')
-    uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='ÓÃ»§Î¨Ò»id')
-    token = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='ÓÃ»§token£¨²»¶ÔÍâ£©')
-    deleted = db.Column(db.Boolean, default=True, comment='Âß¼­É¾³ı 1 Î´É¾³ı 2 ÒÑÉ¾³ı')
-    status = db.Column(db.Boolean, default=True, comment='ÓÃ»§×´Ì¬ 1 Õı³£ 2 Ëø¶¨')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='´´½¨Ê±¼ä')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='¸üĞÂÊ±¼ä')
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='è‡ªå¢id')
+    username = db.Column(db.String(64, collation='utf8mb4_general_ci'), default='', comment='ç”¨æˆ·å§“å')
+    uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='ç”¨æˆ·å”¯ä¸€id')
+    token = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='ç”¨æˆ·tokenï¼ˆä¸å¯¹å¤–ï¼‰')
+    deleted = db.Column(db.Boolean, default=True, comment='é€»è¾‘åˆ é™¤ 1 æœªåˆ é™¤ 2 å·²åˆ é™¤')
+    status = db.Column(db.Boolean, default=True, comment='ç”¨æˆ·çŠ¶æ€ 1 æ­£å¸¸ 2 é”å®š')
+    create_at = db.Column(db.DateTime, default=datetime.now, comment='åˆ›å»ºæ—¶é—´')
+    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='æ›´æ–°æ—¶é—´')
 
-    # ¶¨ÒåË÷Òı
+    # å®šä¹‰ç´¢å¼•
     __table_args__ = (
     db.Index('index_uuid', uuid, mysql_length=255),
     db.Index('index_token', token, mysql_length=255),
-    {'comment': 'Íâ²¿ÓÃ»§±í', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
+    {'comment': 'å¤–éƒ¨ç”¨æˆ·è¡¨', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
     )
 
     def __repr__(self):
         return '<MemberUser %r>' % self.id
 
     """
-            »ñÈ¡Ò»Ìõ
-            @param set filters ²éÑ¯Ìõ¼ş
-            @param obj order ÅÅĞò
-            @param tuple field ×Ö¶Î
+            è·å–ä¸€æ¡
+            @param set filters æŸ¥è¯¢æ¡ä»¶
+            @param obj order æ’åº
+            @param tuple field å­—æ®µ
             @return dict
         """
 
@@ -47,29 +48,29 @@ class MemberUser(db.Model):
         else:
             res = res.to_dict(only=field)
         return res
-        # ÉèÖÃÃÜÂë
+        # è®¾ç½®å¯†ç 
 
-    # ÉèÖÃÃÜÂë
+    # è®¾ç½®å¯†ç 
     @staticmethod
     def set_password(password):
         return generate_password_hash(password)
 
-    # Ğ£ÑéÃÜÂë
+    # æ ¡éªŒå¯†ç 
     @staticmethod
     def check_password(hash_password, password):
         return check_password_hash(hash_password, password)
 
-    # »ñÈ¡ÓÃ»§ĞÅÏ¢
+    # è·å–ç”¨æˆ·ä¿¡æ¯
     @staticmethod
     def get(id):
         return db.query(MemberUser).filter_by(id=id).first()
 
-    # Ôö¼ÓÓÃ»§
+    # å¢åŠ ç”¨æˆ·
     def add(self, user):
         db.add(user)
         return True
 
-    # ¸ù¾İidÉ¾³ıÓÃ»§
+    # æ ¹æ®idåˆ é™¤ç”¨æˆ·
     def delete(self, id):
         db.query(MemberUser).filter_by(id=id).update({'deleted': 2})
         return db.commit()

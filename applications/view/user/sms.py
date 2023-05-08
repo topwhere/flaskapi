@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import random
 from flask import request, current_app
 from flask_restful import Resource

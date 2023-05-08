@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from functools import wraps
 from flask import abort, request, jsonify, session
 from flask_login import login_required

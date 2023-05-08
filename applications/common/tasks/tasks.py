@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import datetime
 
 task_list = ['task2', 'task3', 'task4']

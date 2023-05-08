@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask import g, current_app
 from functools import wraps
 from sqlalchemy.orm import load_only

@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask import Flask
 
 from .init_sqlalchemy import db, ma, init_databases

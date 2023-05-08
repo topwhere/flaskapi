@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from apscheduler.events import (
     EVENT_JOB_ADDED,
     EVENT_JOB_ERROR,

@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from dotenv import dotenv_values
 import sqlparse
 import pymysql

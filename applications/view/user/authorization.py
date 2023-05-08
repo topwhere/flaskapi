@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask import current_app, g
 from flask_restful import Resource
 from flask_restful.reqparse import RequestParser

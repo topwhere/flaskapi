@@ -1,20 +1,21 @@
+# -*- coding:utf-8 -*-
 import datetime
 from applications.extensions import db
 
 class MemberPointsAccount(db.Model):
     __tablename__ = 'member_points_account'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='×ÔÔöid')
-    uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='ÓÃ»§Î¨Ò»id')
-    historical_points = db.Column(db.BigInteger, default=0, comment='ÀúÊ·³äÖµ»ı·Ö')
-    current_points = db.Column(db.BigInteger, default=0, comment='µ±Ç°»ı·ÖÓà¶î')
-    status = db.Column(db.Boolean, default=True, comment='ÕË»§×´Ì¬ 1 Õı³£ 2 Ëø¶¨')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='´´½¨Ê±¼ä')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='¸üĞÂÊ±¼ä')
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='è‡ªå¢id')
+    uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='ç”¨æˆ·å”¯ä¸€id')
+    historical_points = db.Column(db.BigInteger, default=0, comment='å†å²å……å€¼ç§¯åˆ†')
+    current_points = db.Column(db.BigInteger, default=0, comment='å½“å‰ç§¯åˆ†ä½™é¢')
+    status = db.Column(db.Boolean, default=True, comment='è´¦æˆ·çŠ¶æ€ 1 æ­£å¸¸ 2 é”å®š')
+    create_at = db.Column(db.DateTime, default=datetime.now, comment='åˆ›å»ºæ—¶é—´')
+    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='æ›´æ–°æ—¶é—´')
 
-    # ¶¨ÒåË÷Òı
+    # å®šä¹‰ç´¢å¼•
     __table_args__ = (
         db.Index('index_uuid', uuid, mysql_length=255),
-        {'comment': 'ÓÃ»§»ı·ÖÕË»§±í', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
+        {'comment': 'ç”¨æˆ·ç§¯åˆ†è´¦æˆ·è¡¨', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
     )
 
     def __repr__(self):

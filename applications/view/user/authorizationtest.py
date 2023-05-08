@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask_restful import Resource
 
 from applications.common.utils.decorators import login_required

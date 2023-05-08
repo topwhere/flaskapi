@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from applications.extensions import ma
 from marshmallow import fields
 

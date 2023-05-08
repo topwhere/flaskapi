@@ -1,24 +1,25 @@
+# -*- coding:utf-8 -*-
 import datetime
 from applications.extensions import db
 
 
 class ApiInformation(db.Model):
     __tablename__ = 'api_information'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='×ÔÔöid')
-    host = db.Column(db.String(255, collation='utf8mb4_general_ci'), nullable=False, default='', comment='½Ó¿ÚµØÖ·')
-    name = db.Column(db.String(255, collation='utf8mb4_general_ci'), nullable=False, default='', comment='½Ó¿ÚÃû³Æ')
-    api_mark = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='½Ó¿ÚÃèÊö')
-    api_doc = db.Column(db.String(255, collation='utf8mb4_general_ci'), nullable=False, default='',comment='½Ó¿ÚÎÄµµµØÖ·')
-    integral = db.Column(db.BigInteger, default=0, comment='Ã¿´Îµ÷ÓÃ»ı·Ö')
-    deleted = db.Column(db.Boolean, default=True, comment='Âß¼­É¾³ı 1 Î´É¾³ı 2 ÒÑÉ¾³ı')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='´´½¨Ê±¼ä')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='¸üĞÂÊ±¼ä')
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='è‡ªå¢id')
+    host = db.Column(db.String(255, collation='utf8mb4_general_ci'), nullable=False, default='', comment='æ¥å£åœ°å€')
+    name = db.Column(db.String(255, collation='utf8mb4_general_ci'), nullable=False, default='', comment='æ¥å£åç§°')
+    api_mark = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='æ¥å£æè¿°')
+    api_doc = db.Column(db.String(255, collation='utf8mb4_general_ci'), nullable=False, default='',comment='æ¥å£æ–‡æ¡£åœ°å€')
+    integral = db.Column(db.BigInteger, default=0, comment='æ¯æ¬¡è°ƒç”¨ç§¯åˆ†')
+    deleted = db.Column(db.Boolean, default=True, comment='é€»è¾‘åˆ é™¤ 1 æœªåˆ é™¤ 2 å·²åˆ é™¤')
+    create_at = db.Column(db.DateTime, default=datetime.now, comment='åˆ›å»ºæ—¶é—´')
+    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='æ›´æ–°æ—¶é—´')
 
-    # ¶¨ÒåË÷Òı
+    # å®šä¹‰ç´¢å¼•
     __table_args__ = (
         db.Index('index_host', host),
         db.Index('index_name', name),
-        {'comment': 'apiĞÅÏ¢·¢²¼¹ÜÀí±í', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
+        {'comment': 'apiä¿¡æ¯å‘å¸ƒç®¡ç†è¡¨', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
     )
 
     def __repr__(self):

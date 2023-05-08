@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask import make_response, current_app, request
 from flask_restful.utils import PY3
 from json import dumps

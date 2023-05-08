@@ -1,22 +1,23 @@
+# -*- coding:utf-8 -*-
 import datetime
 from applications.extensions import db
 
 
 class ApiInforChangeRecord(db.Model):
     __tablename__ = 'api_infor_change_record'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='×ÔÔöid')
-    api_id = db.Column(db.Integer, default=0, comment='½Ó¿Úid')
-    edit_mark = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='±ä¸ü¿ÚÃèÊö')
-    edit_uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='½Ó¿ÚĞŞ¸ÄÈËuuid')
-    new_info = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='½Ó¿ÚĞŞ¸ÄÇ°ĞÅÏ¢')
-    old_info = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='½Ó¿ÚĞŞ¸ÄºóĞÅÏ¢')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='´´½¨Ê±¼ä')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='¸üĞÂÊ±¼ä')
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='è‡ªå¢id')
+    api_id = db.Column(db.Integer, default=0, comment='æ¥å£id')
+    edit_mark = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='å˜æ›´å£æè¿°')
+    edit_uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='æ¥å£ä¿®æ”¹äººuuid')
+    new_info = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='æ¥å£ä¿®æ”¹å‰ä¿¡æ¯')
+    old_info = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='æ¥å£ä¿®æ”¹åä¿¡æ¯')
+    create_at = db.Column(db.DateTime, default=datetime.now, comment='åˆ›å»ºæ—¶é—´')
+    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='æ›´æ–°æ—¶é—´')
 
-    # ¶¨ÒåË÷Òı
+    # å®šä¹‰ç´¢å¼•
     __table_args__ = (
         db.Index('index_api_id', api_id, mysql_length=10),
-        {'comment': 'api±ä¸ü¼ÇÂ¼±í', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
+        {'comment': 'apiå˜æ›´è®°å½•è¡¨', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
     )
 
     def __repr__(self):

@@ -1,20 +1,21 @@
+# -*- coding:utf-8 -*-
 import datetime
 from applications.extensions import db
 
 class MemberPointsChangeRecord(db.Model):
     __tablename__ = 'member_points_change_record'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='×ÔÔöid')
-    uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='ÓÃ»§uuid')
-    account_id = db.Column(db.Integer, default=0, comment='ÕË»§id')
-    points = db.Column(db.BigInteger, default=0, comment='»ı·Ö¶î¶È')
-    type = db.Column(db.Boolean, default=True, comment='»ı·ÖÀàĞÍ 1 Ôö-³äÖµ»ı·Ö 2 ¼õ-Ïû·Ñ»ı·Ö 3 Ôö-ÔùËÍ»ı·Ö')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='´´½¨Ê±¼ä')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='¸üĞÂÊ±¼ä')
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='è‡ªå¢id')
+    uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='ç”¨æˆ·uuid')
+    account_id = db.Column(db.Integer, default=0, comment='è´¦æˆ·id')
+    points = db.Column(db.BigInteger, default=0, comment='ç§¯åˆ†é¢åº¦')
+    type = db.Column(db.Boolean, default=True, comment='ç§¯åˆ†ç±»å‹ 1 å¢-å……å€¼ç§¯åˆ† 2 å‡-æ¶ˆè´¹ç§¯åˆ† 3 å¢-èµ é€ç§¯åˆ†')
+    create_at = db.Column(db.DateTime, default=datetime.now, comment='åˆ›å»ºæ—¶é—´')
+    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='æ›´æ–°æ—¶é—´')
 
-    # ¶¨ÒåË÷Òı
+    # å®šä¹‰ç´¢å¼•
     __table_args__ = (
         db.Index('idx_uuid', uuid, mysql_length=255),
-        {'comment': 'ÓÃ»§ÕË»§»ı·Ö±ä¸ü¼ÇÂ¼±í', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
+        {'comment': 'ç”¨æˆ·è´¦æˆ·ç§¯åˆ†å˜æ›´è®°å½•è¡¨', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
     )
 
     def __repr__(self):

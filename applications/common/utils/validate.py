@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 # xss过滤
 import validators
 from flask import escape

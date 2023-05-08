@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import random, math
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 

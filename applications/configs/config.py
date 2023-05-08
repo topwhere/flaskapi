@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import logging
 import os
 from urllib.parse import quote_plus as urlquote

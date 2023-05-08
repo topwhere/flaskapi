@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask_login import current_user
 
 from applications.common.utils.validate import str_escape

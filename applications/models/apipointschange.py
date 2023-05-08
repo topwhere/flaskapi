@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import datetime
 from applications.extensions import db
 
@@ -5,17 +6,17 @@ from applications.extensions import db
 
 class ApiPointsChange(db.Model):
     __tablename__ = 'api_points_change'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='×ÔÔöid')
-    api_id = db.Column(db.Integer, default=0, comment='½Ó¿Úid')
-    member_points_change_id = db.Column(db.Integer, default=0, comment='»ı·Ö±ä¸ü¼ÇÂ¼id')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='´´½¨Ê±¼ä/½Ó¿Úµ÷ÓÃÊ±¼ä')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='¸üĞÂÊ±¼ä')
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='è‡ªå¢id')
+    api_id = db.Column(db.Integer, default=0, comment='æ¥å£id')
+    member_points_change_id = db.Column(db.Integer, default=0, comment='ç§¯åˆ†å˜æ›´è®°å½•id')
+    create_at = db.Column(db.DateTime, default=datetime.now, comment='åˆ›å»ºæ—¶é—´/æ¥å£è°ƒç”¨æ—¶é—´')
+    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='æ›´æ–°æ—¶é—´')
 
-    # ¶¨ÒåË÷Òı
+    # å®šä¹‰ç´¢å¼•
     __table_args__ = (
         db.Index('index_api_id', api_id, mysql_length=10),
         db.Index('index_member_points_change_id', member_points_change_id, mysql_length=10),
-        {'comment': 'api»ı·ÖÏû·Ñ¼ÇÂ¼±í', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
+        {'comment': 'apiç§¯åˆ†æ¶ˆè´¹è®°å½•è¡¨', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
 
     )
 

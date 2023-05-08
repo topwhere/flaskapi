@@ -110,6 +110,8 @@ PLUGIN_ENABLE_FOLDERS = ["helloworld"]
 
 ```bash
 # 1 安 装 依 赖 包
+conda activate myenv3.7
+
 pip install -r requirements.txt
 # 2 初 始 化 数 据 库
 

@@ -1,20 +1,17 @@
+# -*- coding:utf-8 -*-
 import os
 
-import click
 
 from applications.common.script.initdb import init_db
 from applications.common.script.newmodular.new import NewViewModular
 
 
 def init_script(app):
-    @app.cli.command()
     def init():
         init_db()
 
 
     @app.cli.command()
-    @click.option('--type', prompt="请输入类型", help='新增的类型')
-    @click.option('--name', prompt="请输入新增的名称", help='新增的名称')
     def new(type,name):
         if type == 'view':
             if name.count('/') > 1:

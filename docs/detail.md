@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 ### 权限管理 :id=authorize
 
 使用装饰器 @authorize时需要注意，该装饰器需要写在	@app.route	之后

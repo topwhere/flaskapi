@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 # from applications.common.utils.http import fail_api, success_api,data_api
 # from applications.common.curd import model_to_dicts,get_one_by_id,auto_model_jsonify
 # from applications.extensions import db

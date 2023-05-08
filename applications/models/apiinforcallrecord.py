@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import datetime
 from applications.extensions import db
 
@@ -5,18 +6,18 @@ from applications.extensions import db
 
 class ApiInforCallRecord(db.Model):
     __tablename__ = 'api_infor_call_record'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='×ÔÔöid')
-    api_id = db.Column(db.Integer, default=0, comment='½Ó¿Úid')
-    ip = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='µ÷ÓÃip')
-    uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='½Ó¿Úµ÷ÓÃÈËID')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='´´½¨Ê±¼ä/½Ó¿Úµ÷ÓÃÊ±¼ä')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='¸üĞÂÊ±¼ä')
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='è‡ªå¢id')
+    api_id = db.Column(db.Integer, default=0, comment='æ¥å£id')
+    ip = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='è°ƒç”¨ip')
+    uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='æ¥å£è°ƒç”¨äººID')
+    create_at = db.Column(db.DateTime, default=datetime.now, comment='åˆ›å»ºæ—¶é—´/æ¥å£è°ƒç”¨æ—¶é—´')
+    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='æ›´æ–°æ—¶é—´')
 
-    # ¶¨ÒåË÷Òı
+    # å®šä¹‰ç´¢å¼•
     __table_args__ = (
         db.Index('index_api_id', api_id, mysql_length=10),
         db.Index('index_uuid', uuid, mysql_length=255),
-        {'comment': 'apiµ÷ÓÃ¼ÇÂ¼±í', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
+        {'comment': 'apiè°ƒç”¨è®°å½•è¡¨', 'mysql_charset': 'utf8mb4', 'mysql_collate': 'utf8mb4_general_ci'}
 
     )
 
