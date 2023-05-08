@@ -21,3 +21,4 @@ sqlparse==0.4.4
 validators==0.20.0
 webargs==8.2.0
 Werkzeug==2.2.3
+
