@@ -9,5 +9,4 @@ demo_bp = Blueprint('demo', __name__, url_prefix="/v1.0/demo")
 demo_api = Api(demo_bp, catch_all_404s=True)
 demo_api.representation('application/json')(output_json)
 
-demo_api.add_resource(demo.DemoView, '/',
-					 endpoint='Demo')
+demo_api.add_resource(demo.DemoView, '/',endpoint='Demo')

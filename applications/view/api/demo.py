@@ -2,7 +2,6 @@
 # from applications.common.utils.http import fail_api, success_api,data_api
 # from applications.common.curd import model_to_dicts,get_one_by_id,auto_model_jsonify
 # from applications.extensions import db
-# from applications.models import Demo
 # from applications.schemas import DemoOutSchema
 
 
@@ -10,6 +9,7 @@ from flask import current_app, g
 from flask_restful import Resource
 from flask_restful.reqparse import RequestParser
 from datetime import datetime, timedelta
+from applications.models import Demo
 
 from applications.common.utils.jwt_util import generate_jwt
 from applications.common.utils import parser
@@ -21,6 +21,18 @@ class DemoView(Resource):
 	"""
 
 	def get(self):
+		return {"data": "这是api/demo路由"}, 200
+        
+	
+	def getDemo1():
+		# req_json = request.json
+		# id = str_escape(req_json.get("id"))
+		id = "4"
+		if not id:
+			return {"msg": "ID不能为空"}, -1
+
+		# demoData = Demo.query.filter_by(id=id).all()
+
 		return {"data": "这是api/demo路由"}, 200
 
 # @api_demo.route('/')
