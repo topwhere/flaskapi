@@ -15,11 +15,11 @@ class SMSVerificationCodeResource(Resource):
 
 	decorators = [
 		lmt.limit(constants.LIMIT_SMS_VERIFICATION_CODE_BY_MOBILE,
-				  key_func=lambda: request.view_args['mobile'],
-				  error_message=error_message),
+				key_func=lambda: request.view_args['mobile'],
+				error_message=error_message),
 		lmt.limit(constants.LIMIT_SMS_VERIFICATION_CODE_BY_IP,
-				  key_func=get_remote_address,
-				  error_message=error_message)
+				key_func=get_remote_address,
+				error_message=error_message)
 	]
 
 	def get(self, mobile):

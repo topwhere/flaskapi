@@ -10,7 +10,7 @@ plugin_api = Api(plugin_bp, catch_all_404s=True)
 plugin_api.representation('application/json')(output_json)
 
 plugin_api.add_resource(plugin_tools.PluginView, '/data/',
-					 endpoint='Plugin')
+					endpoint='Plugin')
 
 plugin_api.add_resource(plugin_tools.PluginEnableView, '/enable/',
-					 endpoint='PluginEnable')
+					endpoint='PluginEnable')
