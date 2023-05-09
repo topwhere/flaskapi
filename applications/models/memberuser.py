@@ -13,8 +13,8 @@ class MemberUser(db.Model):
     token = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='用户token（不对外）')
     deleted = db.Column(db.Boolean, default=True, comment='逻辑删除 1 未删除 2 已删除')
     status = db.Column(db.Boolean, default=True, comment='用户状态 1 正常 2 锁定')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='创建时间')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='更新时间')
+    create_at = db.Column(db.DateTime, default=datetime.datetime.now, comment='创建时间')
+    update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now, comment='更新时间')
 
     # 定义索引
     __table_args__ = (
