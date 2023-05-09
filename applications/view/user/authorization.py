@@ -30,18 +30,20 @@ class AuthorizationView(Resource):
 
             return token, refresh_token
 
-        def post(self, mobile):
+        def post(self):
             json_parser = RequestParser()
-            json_parser.add_argument('code', type=parser.regex(r'^\d{6}$'), required=True
-                                     ,location='json')
+            
+            # json_parser.add_argument('code', type=parser.regex(r'^\d{6}$'), required=True,location='json')
+            json_parser.add_argument('mobile', type=parser.regex(r'^\d{11}$'), required=True,location='json')
+
             args = json_parser.parse_args()
-            code = args.code
-            print(mobile)
 
+            
+            mobile = args.mobile
+            # token, refresh_token = self._generate_tokens(mobile)
 
-            token, refresh_token = self._generate_tokens(1)
-
-            return {'token': token, 'refresh_token': refresh_token}, 201
+            # return {'token': token, 'refresh_token': refresh_token}, 201
+            return {'mobile': mobile}, 200
 
         def put(self):
             if g.user_id is not None and g.is_refresh is True:

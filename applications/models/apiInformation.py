@@ -12,8 +12,8 @@ class ApiInformation(db.Model):
     api_doc = db.Column(db.String(255, collation='utf8mb4_general_ci'), nullable=False, default='',comment='接口文档地址')
     integral = db.Column(db.BigInteger, default=0, comment='每次调用积分')
     deleted = db.Column(db.Boolean, default=True, comment='逻辑删除 1 未删除 2 已删除')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='创建时间')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='更新时间')
+    create_at = db.Column(db.DateTime, default=datetime.datetime.now, comment='创建时间')
+    update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now, comment='更新时间')
 
     # 定义索引
     __table_args__ = (
@@ -24,3 +24,23 @@ class ApiInformation(db.Model):
 
     def __repr__(self):
         return '<ApiInformation %r>' % self.name
+    
+
+    # 获取api信息
+    @staticmethod
+    def get(id):
+        return db.query(ApiInformation).filter_by(id=id).first()
+
+    # 增加api信息
+    def add(apiInfo):
+        db.add(apiInfo)
+        return True
+
+    # 根据id删除api
+    def delete(id):
+        db.query(ApiInformation).filter_by(id=id).update({'deleted': 2})
+        return db.commit()
+    
+    # 校验是否存在
+    def chk_count(name): 
+        return db.query(ApiInformation).filter_by(name=name).count()
