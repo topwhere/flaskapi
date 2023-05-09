@@ -3,19 +3,15 @@ from sqlalchemy import false, true
 from applications.models import MemberPointsChangeRecord
 from applications.common.curd import auto_model_jsonify
 from applications.extensions import db
+
+# 用户账户积分变更记录
 class MemberPointsChangeRecordService():
-    #根据手机号查询用户信息
+
+
+    #Get 根据uuid查询用户积分列表
     @staticmethod
-    def getMemberPointsChangeRecordByUuid(uuid = ''):
-        return uuid
-    
-
-
-
-    #根据手机号查询用户信息
-    @staticmethod
-    def getMemberPointsChangeRecordInfoByMobile(mobile = ''):
-        MemberPointsChangeRecordInfo = MemberPointsChangeRecord.query.filter_by(deleted=1).filter_by(mobile=mobile).all()
+    def getMemberPointsChangeRecordInfoByUuid(uuid = ''):
+        MemberPointsChangeRecordInfo = MemberPointsChangeRecord.query.filter_by(uuid=uuid).all()
 
         if MemberPointsChangeRecordInfo == []:
             return []
@@ -23,10 +19,10 @@ class MemberPointsChangeRecordService():
         data = auto_model_jsonify(MemberPointsChangeRecordInfo,MemberPointsChangeRecord)
         return data[0]
     
-    #根据uuid查询用户信息是否
+    #Get 根据用户账户Id查询用户积分列表
     @staticmethod
-    def chkMemberPointsChangeRecordInfoByUuid(uuid = ''):
-        MemberPointsChangeRecordInfo = MemberPointsChangeRecord.query.filter_by(deleted=1).filter_by(uuid=uuid).all()
+    def getMemberPointsChangeRecordInfoByUuid(AccountId = ''):
+        MemberPointsChangeRecordInfo = MemberPointsChangeRecord.query.filter_by(account_id=AccountId).all()
 
         if MemberPointsChangeRecordInfo == []:
             return []
@@ -34,36 +30,34 @@ class MemberPointsChangeRecordService():
         data = auto_model_jsonify(MemberPointsChangeRecordInfo,MemberPointsChangeRecord)
         return data[0]
     
-    #根据手机号查询用户信息是否存在
+    #Add 根据用户账户Id添加积分变更信息
     @staticmethod
-    def chkMemberPointsChangeRecordInfoByMobile(mobile = ''):
-        MemberPointsChangeRecordInfo = MemberPointsChangeRecord.query.filter_by(deleted=1).filter_by(mobile=mobile).all()
+    # AccountId 账户id
+    # points    积分
+    # type      积分类型
+    def addMemberPointsChangeRecordByAccountId(AccountId = '',points = '',type = 1):
 
-        if MemberPointsChangeRecordInfo == []:
-            return 0
-        else:
-            return 1
-
-    #变更用户信息
-    # data = {"username":"username","username":"username"}
-    @staticmethod
-    def editMemberPointsChangeRecord(uuid = '',data={}):
-        res =  MemberPointsChangeRecord.query.filter_by(uuid=uuid).update(data)
-        MemberPointsChangeRecord.session.commit()
-        if not res:
-            return false
+        addMemberPointsChangeRecord = MemberPointsChangeRecord(
+            account_id=AccountId,
+            points=points,
+            type=type
+        )
+        db.session.add(addMemberPointsChangeRecord)
+        db.session.commit()
         return true
     
-    #删除用户
+    #Add 根据用户Uuid添加积分变更信息
     @staticmethod
-    def delMemberPointsChangeRecord(uuid = ''):
-        MemberPointsChangeRecordInfo = MemberPointsChangeRecord.query.filter_by(deleted=1).filter_by(uuid=uuid).first()
+    # AccountId 账户id
+    # points    积分
+    # type      积分类型
+    def addMemberPointsChangeRecordByUuid(uuid = '',points = '',type = 1):
 
-        #  不存在有效数据删除失败
-        if not MemberPointsChangeRecordInfo:
-           return false
-        
-        MemberPointsChangeRecordInfo.deleted = 2
+        addMemberPointsChangeRecord = MemberPointsChangeRecord(
+            uuid=uuid,
+            points=points,
+            type=type
+        )
+        db.session.add(addMemberPointsChangeRecord)
         db.session.commit()
-
         return true
