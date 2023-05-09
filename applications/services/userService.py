@@ -17,7 +17,7 @@ class UserService():
         data = auto_model_jsonify(MemberUserInfo,MemberUser)
         return data[0]
     
-    #根据uuid查询用户信息是否
+    #根据uuid查询用户信息
     @staticmethod
     def chkMemberUserInfoByUuid(uuid = ''):
         MemberUserInfo = MemberUser.query.filter_by(deleted=1).filter_by(uuid=uuid).all()
@@ -45,6 +45,7 @@ class UserService():
         res =  MemberUser.query.filter_by(uuid=uuid).update(data)
         MemberUser.session.commit()
         if not res:
+            #ErrorRep -200 数据库操作异常
             return false
         return true
     
@@ -55,6 +56,7 @@ class UserService():
 
         #  不存在有效数据删除失败
         if not MemberUserInfo:
+            #ErrorRep -200 数据库操作异常
            return false
         
         MemberUserInfo.deleted = 2

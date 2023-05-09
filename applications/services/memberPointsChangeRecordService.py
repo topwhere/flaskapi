@@ -21,7 +21,7 @@ class MemberPointsChangeRecordService():
     
     #Get 根据用户账户Id查询用户积分列表
     @staticmethod
-    def getMemberPointsChangeRecordInfoByUuid(AccountId = ''):
+    def getMemberPointsChangeRecordInfoByUAccountId(AccountId = ''):
         MemberPointsChangeRecordInfo = MemberPointsChangeRecord.query.filter_by(account_id=AccountId).all()
 
         if MemberPointsChangeRecordInfo == []:
@@ -48,7 +48,7 @@ class MemberPointsChangeRecordService():
     
     #Add 根据用户Uuid添加积分变更信息
     @staticmethod
-    # AccountId 账户id
+    # uuid 用户uuid
     # points    积分
     # type      积分类型
     def addMemberPointsChangeRecordByUuid(uuid = '',points = '',type = 1):
