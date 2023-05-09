@@ -51,3 +51,8 @@ class AuthorizationView(Resource):
                 return {'token': token}
             else:
                 return {'message': 'Invalid refresh token'}, 403
+        
+        def adduser(self):
+            
+                return {'message': 'Invalid refresh token'}, 403
+            

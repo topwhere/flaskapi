@@ -11,7 +11,7 @@ class ApiInformation(db.Model):
     api_mark = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='接口描述')
     api_doc = db.Column(db.String(255, collation='utf8mb4_general_ci'), nullable=False, default='',comment='接口文档地址')
     integral = db.Column(db.BigInteger, default=0, comment='每次调用积分')
-    deleted = db.Column(db.Boolean, default=True, comment='逻辑删除 1 未删除 2 已删除')
+    deleted = db.Column(db.Integer, default=1, comment='逻辑删除 1 未删除 2 已删除')
     create_at = db.Column(db.DateTime, default=datetime.datetime.now, comment='创建时间')
     update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now, comment='更新时间')
 

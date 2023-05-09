@@ -2,7 +2,7 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from . import authorization, authorizationtest
+from . import authorization, authorizationtest,users
 from applications.common.utils.output import output_json
 
 
@@ -14,6 +14,9 @@ user_api.representation('application/json')(output_json)
 # url路径 xxx:8080/v1.0/user/sms/codes
 user_api.add_resource(authorization.AuthorizationView, '/sms/codes/',
                       endpoint='Authorization')
+
+#用户创建相关逻辑
+user_api.add_resource(users.UsersView, '/info/',endpoint='Users')
 
 user_api.add_resource(authorizationtest.AuthorizationTestView, '/authorizations/',
                       endpoint='AuthorizationTest')

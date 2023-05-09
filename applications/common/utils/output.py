@@ -17,6 +17,9 @@ def output_json(data, code, headers=None):
             'message': 'OK',
             'data': data
         }
+    else:
+        data.code = code
+        
     
 
     settings = current_app.config.get('RESTFUL_JSON', {})
