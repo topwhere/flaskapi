@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from sqlalchemy import false, true
+from sqlalchemy import true
 from applications.models import ApiPointsChange
 
 from applications.common.curd import auto_model_jsonify
@@ -49,7 +49,6 @@ class ApiPointsChangeService():
             member_points_change_id=member_points_change_id
             
         )
-        db.session.add(        addApiPointsChange = ApiPointsChange(
-)
+        db.session.add(addApiPointsChange)
         db.session.commit()
         return true

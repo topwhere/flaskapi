@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
 from sqlalchemy import false, true
 from applications.models import MemberPointsAccount
-from applications.services import MemberPointsChangeRecordService
 
 from applications.common.curd import auto_model_jsonify
 from applications.extensions import db
@@ -75,8 +74,6 @@ class memberPointsAccountService():
             MemberPointsAccountInfo.current_points -= point
         db.session.commit()
 
-        # 积分记录表操作
-        MemberPointsChangeRecordService.addMemberPointsChangeRecordByAccountId(MemberPointsAccountInfo.id,point,type)
         return true
     
 

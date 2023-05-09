@@ -24,7 +24,6 @@ class UsersView(Resource):
 
             # 调用服务层函数查询新用户
             result = UserService().getMemberUserInfoByMobile(mobile)
-
             return result, 200
         
         def post(self):
@@ -43,4 +42,5 @@ class UsersView(Resource):
                 return {'token': token}
             else:
                 return {'message': 'Invalid refresh token'}, 403
+
                     

@@ -2,8 +2,6 @@
 from sqlalchemy import false, true
 from applications.models import ApiInformation
 
-from applications.services import ApiInforChangeRecordService
-
 
 from applications.common.curd import auto_model_jsonify
 from applications.extensions import db
@@ -55,7 +53,4 @@ class ApiInformationService():
             ApiInformationInfo[key] = val
         db.session.commit()
 
-
-        #存储变更记录待完善
-        ApiInforChangeRecordService.addApiInforChangeRecord(id = '',uuid='',old_info = {},new_info = {})
         return true

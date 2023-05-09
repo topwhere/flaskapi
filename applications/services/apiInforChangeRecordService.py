@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from sqlalchemy import false, true
+from sqlalchemy import true
 from applications.models import ApiInforChangeRecord
 
 from applications.common.curd import auto_model_jsonify
