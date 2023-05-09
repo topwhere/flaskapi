@@ -4,7 +4,7 @@ from flask import Flask
 
 from applications.common.script import init_script
 from applications.extensions import init_plugs
-from applications.extensions.init_logger import init_logger
+# from applications.extensions.init_logger import init_logger
 from applications.configs import config
 
 

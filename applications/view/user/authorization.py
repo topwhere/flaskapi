@@ -15,13 +15,16 @@ class AuthorizationView(Resource):
 
         def _generate_tokens(self, user_id, refresh=True):
             secret = current_app.config['JWT_SECRET']
-            expiry = datetime.utcnow() + timedelta(hours=current_app.config['JWT_EXPIRY_HOURS'])
+            expiry = datetime.utcnow() + timedelta(
+                 hours=current_app.config['JWT_EXPIRY_HOURS'])
 
             token = generate_jwt({'user_id': user_id}, expiry, secret)
 
             if refresh:
-                exipry = datetime.utcnow() + timedelta(days=current_app.config['JWT_REFRESH_DAYS'])
-                refresh_token = generate_jwt({'user_id': user_id, 'is_refresh': True}, exipry, secret)
+                exipry = datetime.utcnow() + timedelta(
+                     days=current_app.config['JWT_REFRESH_DAYS'])
+                refresh_token = generate_jwt({'user_id': user_id, 'is_refresh': True},
+                                             exipry, secret)
             else:
                 refresh_token = None
 
@@ -29,7 +32,8 @@ class AuthorizationView(Resource):
 
         def post(self, mobile):
             json_parser = RequestParser()
-            json_parser.add_argument('code', type=parser.regex(r'^\d{6}$'), required=True, location='json')
+            json_parser.add_argument('code', type=parser.regex(r'^\d{6}$'), required=True
+                                     ,location='json')
             args = json_parser.parse_args()
             code = args.code
             print(mobile)
