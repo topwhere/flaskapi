@@ -41,7 +41,7 @@ class MemberUser(db.Model):
             res = res.order_by(desc(order[0])).first()
         else:
             res = res.order_by(asc(order[0])).first()
-        if res == None:
+        if res is None:
             return None
         if not field:
             res = res.to_dict()
