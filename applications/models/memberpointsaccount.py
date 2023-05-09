@@ -9,8 +9,8 @@ class MemberPointsAccount(db.Model):
     historical_points = db.Column(db.BigInteger, default=0, comment='历史充值积分')
     current_points = db.Column(db.BigInteger, default=0, comment='当前积分余额')
     status = db.Column(db.Integer, default=1, comment='账户状态 1 正常 2 锁定')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='创建时间')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='更新时间')
+    create_at = db.Column(db.DateTime, default=datetime.datetime.now, comment='创建时间')
+    update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now, comment='更新时间')
 
     # 定义索引
     __table_args__ = (

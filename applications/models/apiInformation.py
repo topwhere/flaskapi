@@ -24,23 +24,3 @@ class ApiInformation(db.Model):
 
     def __repr__(self):
         return '<ApiInformation %r>' % self.name
-    
-
-    # 获取api信息
-    @staticmethod
-    def get(id):
-        return db.query(ApiInformation).filter_by(id=id).first()
-
-    # 增加api信息
-    def add(apiInfo):
-        db.add(apiInfo)
-        return True
-
-    # 根据id删除api
-    def delete(id):
-        db.query(ApiInformation).filter_by(id=id).update({'deleted': 2})
-        return db.commit()
-    
-    # 校验是否存在
-    def chk_count(name): 
-        return db.query(ApiInformation).filter_by(name=name).count()

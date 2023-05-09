@@ -11,8 +11,8 @@ class ApiInforChangeRecord(db.Model):
     edit_uuid = db.Column(db.String(255, collation='utf8mb4_general_ci'), default='', comment='接口修改人uuid')
     new_info = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='接口修改前信息')
     old_info = db.Column(db.Text(collation='utf8mb4_general_ci'), comment='接口修改后信息')
-    create_at = db.Column(db.DateTime, default=datetime.now, comment='创建时间')
-    update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, comment='更新时间')
+    create_at = db.Column(db.DateTime, default=datetime.datetime.now, comment='创建时间')
+    update_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now, comment='更新时间')
 
     # 定义索引
     __table_args__ = (
