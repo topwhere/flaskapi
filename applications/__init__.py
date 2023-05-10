@@ -31,6 +31,12 @@ def create_app(config_name=None):
 	if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
 		logo()
 
+	# 添加请求钩子（鉴权）
+	from applications.common.utils.middleware import jwt_authentication
+	app.before_request(jwt_authentication)
+	# 此方法可用来追加response
+	# app.teardown_request
+
 	# 注册蓝图
 	from applications.view.user import user_bp
 	app.register_blueprint(user_bp)
