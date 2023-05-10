@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from flask import make_response, current_app, request
 from flask_restful.utils import PY3
-from json import dumps
+from json import dumps,loads
 
 
 def output_json(data, code, headers=None):
@@ -11,15 +11,20 @@ def output_json(data, code, headers=None):
         current_app.logger.warn(request.data)
         current_app.logger.warn(str(data))
 
-    if 'message' not in data:
+    if code == 200:
         data = {
             'code': code,
-            'message': 'OK',
+            'msg': 'OK',
             'data': data
         }
     else:
-        data.code = code
+        json_str = dumps(data)
+        data2_dict = loads(json_str)
         
+        data = {
+            'code': code,
+            'msg': data2_dict['msg'],
+        }
     
 
     settings = current_app.config.get('RESTFUL_JSON', {})

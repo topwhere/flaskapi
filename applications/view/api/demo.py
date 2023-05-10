@@ -5,14 +5,11 @@
 # from applications.schemas import DemoOutSchema
 
 
-from flask import current_app, g
 from flask_restful import Resource
 from flask_restful.reqparse import RequestParser
 from datetime import datetime, timedelta
 from applications.models import ApiInformation
 
-from applications.common.utils.jwt_util import generate_jwt
-from applications.common.utils import parser
 
 
 class DemoView(Resource):

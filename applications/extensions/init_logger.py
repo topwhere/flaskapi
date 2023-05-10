@@ -30,10 +30,10 @@ def init_logger(app):
     logging_level = app.config['LOGGING_LEVEL']
 
     flask_console_handler = logging.StreamHandler()
-    flask_console_handler.setFormatter(logging.Formatter('%(levelname)s %(module)s %(lineno)d %(message)s'))
+    flask_console_handler.setFormatter(logging.Formatter('%(levelname)s %(module)s %(lineno)d %(msg)s'))
 
     request_formatter = RequestFormatter('[%(asctime)s] %(remote_addr)s requested %(url)s\n'
-                                         '%(levelname)s in %(module)s %(lineno)d: %(message)s')
+                                         '%(levelname)s in %(module)s %(lineno)d: %(msg)s')
 
     flask_file_handler = logging.handlers.RotatingFileHandler(
         filename=os.path.join(logging_file_dir, 'flask.log'),
@@ -61,7 +61,7 @@ def init_logger(app):
     trace_file_handler = logging.FileHandler(
         os.path.join(logging_file_dir, 'userClick.log')
     )
-    trace_file_handler.setFormatter(logging.Formatter('%(message)s'))
+    trace_file_handler.setFormatter(logging.Formatter('%(msg)s'))
     log_trace = logging.getLogger('trace')
     log_trace.addHandler(trace_file_handler)
     log_trace.setLevel(logging.INFO)
@@ -79,10 +79,10 @@ def write_trace_log(param, read_time='', channel_id=0):
     :param channel_id: 频道id
     """
     logger = logging.getLogger('trace')
-    message = '{{"actionTime":"{action_time}","readTime":"{read_time}","channelId":{channel_id},"param":{param}}}'.format(
+    msg = '{{"actionTime":"{action_time}","readTime":"{read_time}","channelId":{channel_id},"param":{param}}}'.format(
         action_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         read_time=read_time,
         channel_id=channel_id,
         param=param
     )
-    logger.info(message)
+    logger.info(msg)

@@ -65,7 +65,7 @@ def validate_token_if_using(func):
 	#             # 判断用户状态
 	#             user_enable = cache_user.UserStatusCache(g.user_id).get()
 	#             if not user_enable:
-	#                 return {'message': 'User denied.'}, 403
+	#                 return {'message': 'User denied.'}, 400
 	#
 	#         return func(*args, **kwargs)
 	#
@@ -83,14 +83,14 @@ def verify_required(func):
 	#     if not g.user_id:
 	#         return {'message': 'User must be authorized.'}, 401
 	#     elif g.is_refresh_token:
-	#         return {'message': 'Do not use refresh token.'}, 403
+	#         return {'message': 'Do not use refresh token.'}, 400
 	#     elif not g.is_verified:
-	#         return {'message': 'User must be real info verified.'}, 403
+	#         return {'message': 'User must be real info verified.'}, 400
 	#     else:
 	#         # 判断用户状态
 	#         user_enable = cache_user.UserStatusCache(g.user_id).get()
 	#         if not user_enable:
-	#             return {'message': 'User denied.'}, 403
+	#             return {'message': 'User denied.'}, 400
 	#
 	#         return func(*args, **kwargs)
 	#
