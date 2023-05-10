@@ -50,9 +50,9 @@ class AuthorizationView(Resource):
                 token, refresh_token = self._generate_tokens(g.user_id, refresh=False)
                 return {'token': token}
             else:
-                return {'message': 'Invalid refresh token'}, 403
+                return {'message': 'Invalid refresh token'}, 400
         
         def adduser(self):
             
-                return {'message': 'Invalid refresh token'}, 403
+                return {'message': 'Invalid refresh token'}, 400
             

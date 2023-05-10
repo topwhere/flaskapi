@@ -24,7 +24,7 @@ def authorize(power: str, log: bool = False):
                 if log:
                     log(request=request, is_access=False)
                 if request.method == 'GET':
-                    abort(403)
+                    abort(400)
                 else:
                     return jsonify(success=False, msg="权限不足!")
             if log:
