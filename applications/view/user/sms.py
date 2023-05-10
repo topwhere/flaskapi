@@ -11,15 +11,15 @@ from . import constants
 class SMSVerificationCodeResource(Resource):
 	# 短信验证码
 	# 增加限流
-	error_msg = 'Too many requests.'
+	error_message = 'Too many requests.'
 
 	decorators = [
 		lmt.limit(constants.LIMIT_SMS_VERIFICATION_CODE_BY_MOBILE,
 				key_func=lambda: request.view_args['mobile'],
-				error_msg=error_msg),
+				error_message=error_message),
 		lmt.limit(constants.LIMIT_SMS_VERIFICATION_CODE_BY_IP,
 				key_func=get_remote_address,
-				error_msg=error_msg)
+				error_message=error_message)
 	]
 
 	def get(self, mobile):

@@ -3,7 +3,7 @@
 集成了对 Pear Admin Flask 二次开发的的邮件操作，并给了相对应的示例。
 """
 from flask import current_app
-from flask_mail import msg
+from flask_mail import Message
 
 from applications.common.curd import model_to_dicts
 from applications.common.helper import ModelFilter
@@ -58,7 +58,7 @@ def add(receiver, subject, content, user_id):
     :return: 成功与否
     """
     try:
-        msg = msg(subject=subject, recipients=receiver.split(";"), html=content)
+        msg = Message(subject=subject, recipients=receiver.split(";"), html=content)
         flask_mail.send(msg)
     except BaseException as e:
         current_app.log_exception(e)
@@ -93,5 +93,5 @@ def send_mail(subject, recipients, content):
     :param recipients: 接收者 多个用英文分号隔开
     :param content: 邮件 html
     """
-    msg = msg(subject=subject, recipients=recipients, html=content)
-    mail.send(msg)
+    message = Message(subject=subject, recipients=recipients, html=content)
+    mail.send(message)

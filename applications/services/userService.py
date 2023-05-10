@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from math import ceil
 import uuid
 from sqlalchemy import false, true
 from applications.models import MemberUser
@@ -47,12 +48,20 @@ class UserService():
     #变更用户信息
     # data = {"username":"username","username":"username"}
     @staticmethod
-    def editMemberUser(uuid = '',data={}):
-        res =  MemberUser.query.filter_by(uuid=uuid).update(data)
-        MemberUser.session.commit()
-        if not res:
+    def editMemberUser(uuid = '',data = {}):
+        MemberUserInfo = MemberUser.query.filter_by(deleted=1).filter_by(uuid=uuid).first()
+
+        #  不存在有效数
+        if not MemberUserInfo:
             #ErrorRep -200 数据库操作异常
-            return false
+           return false
+    
+        for key, val in data.items():
+            if key == "username":
+                MemberUserInfo.username = val
+           
+
+        db.session.commit()
         return true
     
     #删除用户
@@ -72,12 +81,19 @@ class UserService():
     
     #分页查询用户列表信息
     @staticmethod
-    def getMemberUserList(page = 1,per_page = 10):
-        items = db.Query(MemberUser).paginate(page, per_page, error_out=False)
-        return {
-            'items': [item.to_dict() for item in items.items],
-            'total_pages': items.total_pages,
-            'total_items': items.total,
-            'current_page': page
+    def getMemberUserList(page = 1,perpage = 10):
+        items = MemberUser.query.order_by(MemberUser.create_at.desc()).paginate(page=page, per_page=perpage)
+
+        total_pages = ceil(MemberUser.query.count() / perpage)
+        items = auto_model_jsonify(items,MemberUser)
+        result = {
+            'posts': [post for post in items],
+            'meta': {
+                'page': page,
+                'per_page': perpage,
+                'total_pages': total_pages,
+                'total_posts': MemberUser.query.count()
+            }
         }
+        return result
 

@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+import re
 from sqlalchemy import and_
 
 from applications.extensions import db
