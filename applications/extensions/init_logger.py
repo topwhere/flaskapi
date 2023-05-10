@@ -80,7 +80,7 @@ def write_trace_log(param, read_time='', channel_id=0):
     """
     logger = logging.getLogger('trace')
     message = '{{"actionTime":"{action_time}","readTime":"{read_time}","channelId":{channel_id},"param":{param}}}'.format(
-        action_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        action_time=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         read_time=read_time,
         channel_id=channel_id,
         param=param

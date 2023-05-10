@@ -9,7 +9,7 @@ from flask import current_app, g
 from flask_restful import Resource
 from flask_restful.reqparse import RequestParser
 from datetime import datetime, timedelta
-from applications.models import Demo
+from applications.models import ApiInformation
 
 from applications.common.utils.jwt_util import generate_jwt
 from applications.common.utils import parser
@@ -21,19 +21,31 @@ class DemoView(Resource):
 	"""
 
 	def get(self):
-		return {"data": "这是api/demo路由"}, 200
+		
+		# req_json = request.json
+
+		title = "123"
+
+		if not title or not title or not title:
+			return {"msg": "不存在有效数据"}, -1
+
+		ApiInformation.chk_count(title)
+		print(ApiInformation.chk_count(title))
+		exit
+		if bool():
+			return {"msg": "存在相同数据"}, -1
+		
+		ApiInfo = ApiInformation(
+			name = "123"
+		)
+
+		res  = ApiInformation.add(ApiInfo)
+		if res :
+			return {"msg": "创建失败"}, -1
+		
+		return {"msg": "创建成功"}, 200
         
 	
-	def getDemo1():
-		# req_json = request.json
-		# id = str_escape(req_json.get("id"))
-		id = "4"
-		if not id:
-			return {"msg": "ID不能为空"}, -1
-
-		# demoData = Demo.query.filter_by(id=id).all()
-
-		return {"data": "这是api/demo路由"}, 200
 
 # @api_demo.route('/')
 # def index():
