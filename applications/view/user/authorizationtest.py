@@ -8,4 +8,4 @@ class AuthorizationTestView(Resource):
 	method_decorators = [login_required]
 
 	def get(self):
-		return {"msg": "登陆后获取数据"}, 200
+		return {"message": "登陆后获取数据"}, 200

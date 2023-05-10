@@ -1,14 +1,15 @@
 # -*- coding:utf-8 -*-
 # xss过滤
+import re
 import validators
 from flask import escape
 from validators import validator
-
 
 def str_escape(s):
     if not s:
         return None
     return str(escape(s))
+
 
 
 between = validators.between

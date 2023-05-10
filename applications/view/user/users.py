@@ -1,10 +1,7 @@
 # -*- coding:utf-8 -*-
-from flask import current_app, g
 from flask_restful import Resource
 from flask_restful.reqparse import RequestParser
-from datetime import datetime, timedelta
 
-from requests import delete
 from sqlalchemy import true
 
 from applications.common.utils.jwt_util import generate_jwt
@@ -47,11 +44,49 @@ class UsersView(Resource):
         
         # 编辑用户
         def put(self):
-            if g.uuid is not None and g.is_refresh is True:
-                token, refresh_token = self._generate_tokens(g.user_id, refresh=False)
-                return {'token': token}
-            else:
-                return {'message': 'Invalid refresh token'}, 400
+            """
+            判断字符串是否为合法的 UUID 格式。
+            """
+            self.json_parser.add_argument('uuid', type=parser.regex(r'^[a-f0-9]{8}-[a-f0-9]{4}-[4|5][a-f0-9]{3}-[8|9|aA|bB][a-f0-9]{3}-[a-f0-9]{12}$'), required=True,location='json')
+            self.json_parser.add_argument('data',type=dict, required=True,location='json')
+            args = self.json_parser.parse_args()
+            
+            uuid = args.uuid
+            data = args.data
+
+            # 调用服务层函数-查询用户是否存在
+            result = UserService().chkMemberUserInfoByUuid(uuid)
+            if result == [] :
+                return {'msg': "不存在有效用户"}, 400
+            
+            # 调用服务层函数-变更用户信息
+            result = UserService().editMemberUser(uuid,data)
+            if result != true:
+                 return {'msg': "用户信息变更失败"}, 400
+            
+            return {'msg': "更新成功"}, 200
+        
+        
+        #删除用户
+        def delete(self):
+            """
+            判断字符串是否为合法的 UUID 格式。
+            """
+            self.json_parser.add_argument('uuid', type=parser.regex(r'^[a-f0-9]{8}-[a-f0-9]{4}-[4|5][a-f0-9]{3}-[8|9|aA|bB][a-f0-9]{3}-[a-f0-9]{12}$'), required=True,location='json')
+            args = self.json_parser.parse_args()
+            uuid = args.uuid
+
+            # 调用服务层函数-查询用户是否存在
+            result = UserService().chkMemberUserInfoByUuid(uuid)
+            if result == [] :
+                return {'msg': "不存在有效用户"}, 400
+            
+            # 调用服务层函数-变更用户信息
+            result = UserService().delMemberUser(uuid)
+            if result != true:
+                 return {'msg': "用户删除失败"}, 400
+            
+            return {'msg': "删除成功"}, 200
 
                     
 class UsersListView(Resource):
@@ -59,8 +94,11 @@ class UsersListView(Resource):
             # 查询
         def get(self):
             # args = self.json_parser.parse_args()
-            pages = 1
-            count = 10
+            self.json_parser.add_argument('pages', type=int, required=True,location='json')
+            self.json_parser.add_argument('count',type=int, required=True,location='json')
+            args = self.json_parser.parse_args()
+            pages = args.pages
+            count = args.count
             # 调用服务层函数查询新用户
             result = UserService().getMemberUserList(pages,count)
             return result, 200
